@@ -1,32 +1,36 @@
 require('dotenv').config()
 const PouchDB = require('pouchdb')
 PouchDB.plugin(require('pouchdb-find'))
-const dbName =
-  process.env.NODE_ENV === 'test'
-  ? process.env.COUCHDB
-  : process.env.COUCHDB
-const couchDBURL =
-  process.env.NODE_ENV === 'test'
-  ? process.env.COUCHDB
-  : process.env.COUCHDB
+const dbName = process.env.COUCH_DB
+const couchDBURL = process.env.COUCH_URL
 
-console.log(dbName + couchDBURL)
+console.log(process.env.COUCH_URL + process.env.COUCH_DB)
 
 const db = new PouchDB(couchDBURL + dbName)
-const {} = require('ramda')
+
+const pkGenerator = require('./lib/build-pk')
+const { trim } = require('ramda')
 
 // HELPERS
 
-const add = doc => db.put(doc)
-const get = id => db.get(id)
-const update = doc => db.put(doc)
-const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
+// const add = doc => db.put(doc)
+// const get = id => db.get(id)
+// const update = doc => db.put(doc)
+// const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
 
 // PLAYERS
 
-const addPlayer =
-const getPlayer =
-const updatePlayer =
-const deletePlayer = 
+const addPlayer = player => {
+  player._id = pkGenerator('player_', trim(player.name))
+  return db.put(player)
+}
+const getPlayer = id => {
+  return db.get(id)
+}
 
-const listPlayers
+const dal = {
+  addPlayer,
+  getPlayer
+}
+
+module.exports = dal
