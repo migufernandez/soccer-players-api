@@ -27,10 +27,18 @@ const addPlayer = player => {
 const getPlayer = id => {
   return db.get(id)
 }
+const updatePlayer = player => {
+  return db.put(player)
+}
+const deletePlayer = id => {
+  return db.get(id).then(player => db.remove(player))
+}
 
 const dal = {
   addPlayer,
-  getPlayer
+  getPlayer,
+  updatePlayer,
+  deletePlayer
 }
 
 module.exports = dal
