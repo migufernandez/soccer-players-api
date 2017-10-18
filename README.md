@@ -15,7 +15,6 @@ POST /players
 **Sample Request Body JSON Data**
 ```
 {
-  "_id": 'player_cristiano_ronaldo',
   "name": 'Cristiano Ronaldo',
   "nationality": 'Portuguese',
   "yearBorn": 1985,
@@ -28,9 +27,11 @@ POST /players
 ```
 **Sample Response**
 ```
-"ok": true,
-"id": player_cristiano_ronaldo,
-"rev": "74508hf2in237y487hr38y8357"
+{
+  "ok": true,
+  "id": player_cristiano_ronaldo,
+  "rev": "74508hf2in237y487hr38y8357"
+}
 ```
 ## Grab a player
 `GET /players/{id}`
@@ -38,21 +39,64 @@ POST /players
 ```
 GET /players/player_cristiano_ronaldo
 ```
-
+**Sample Response**
+```
+{
+  "_id": 'player_cristiano_ronaldo',
+  "_rev": "6-3c7e00b9d8dd077920c322086153b650",
+  "name": 'Cristiano Ronaldo',
+  "nationality": 'Portuguese',
+  "yearBorn": 1985,
+  "position": 'forwarder',
+  "goals": 998,
+  "titles": 14,
+  "club": { name: 'Real Madrid', location: 'Madrid' },
+  "type": "player"
+}
+```
 ## Update a player
 `PUT /players/{id}`
 **Example**
 ```
 PUT /players/player_cristiano_ronaldo
 ```
-
+**Sample Request Body JSON Data**
+```
+{
+  "_id": 'player_cristiano_ronaldo',
+  "_rev": "6-3c7e00b9d8dd077920c322086153b650",
+  "name": 'Cristiano Ronaldo',
+  "nationality": 'Portuguese',
+  "yearBorn": 1985,
+  "position": 'forwarder',
+  "goals": 998,
+  "titles": 14,
+  "club": { name: 'Real Madrid', location: 'Madrid' },
+  "type": "player"
+} 
+```
+**200 Sample Response**
+```
+{
+  "ok": true,
+  "id": player_cristiano_ronaldo,
+  "rev": "74508hf2in237y487hr38y8357"
+}
+```
 ## Delete a player
 `DELETE /players/{id}`
 **Example**
 ```
 DELETE /players/player_cristiano_ronaldo
 ```
-
+**200 Sample Response**
+```
+{
+  "ok": true,
+  "id": player_cristiano_ronaldo,
+  "rev": "74508hf2in237y487hr38y8357"
+}
+```
 
 ## Endpoints 2.0
 
